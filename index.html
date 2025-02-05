@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('fondo.jpg') no-repeat center center/cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #000000;
+        }
+        .card {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .galeria {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 50px 0;
+        }
+        .contenedor-fotos {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            width: 80%;
+            padding: 10px;
+        }
+        .contenedor-fotos img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            scroll-snap-align: center;
+            transition: transform 0.3s, filter 0.5s;
+        }
+        .contenedor-fotos img:hover {
+            transform: scale(1.1);
+        }
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            width: 101%;
+            height: 101%;
+            position: absolute;
+            backface-visibility: hidden;
+            background: #ff4d6d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
+        }
+        .card-back {
+            background: white;
+            color: #ff4d6d;
+            transform: rotateY(180deg);
+            padding: 20px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .surprise-btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .surprise-btn:hover {
+            background: #d43f5e;
+        }
+        @keyframes floating-hearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            font-size: 24px;
+            color: red;
+            animation: floating-hearts 4500s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="fonseca.mp3" type="audio/mp3">
+    </audio>
+    <button onclick="document.getElementById('cancion').play()">🎵 Reproducir Música</button>
+<audio id="cancion" loop>
+    <source src="fonseca.mp3" type="audio/mp3">
+</audio>
+    <div class="container">
+        <h1>Feliz San Valentín, Mi Amor ❤️</h1>
+        <div class="card" onclick="toggleCard()">
+            <div class="card-inner" id="card">
+                <div class="card-front">
+                    💌 Haz clic para abrir la carta
+                </div>
+                <div class="card-back">
+                    <p>Se que no he echo algunas cosas bien pero creeme que por el amor que te tengo he cambiado, no soy perfecto pero a tu lado soy la persona mas completa y felz de este mundo me has enseñado muchas cisas y quiero seguir aprendiendo de ti, como en varias ocaciones te lo dije yo quiero una vida entera a tu lado, solo me queda pedir perdon por los errores que cometi, no te imaginas lo mucho que te amo y en un futuro quiero que seas esa gran mujer que siemre soñe.❤️Te Amo Mucho Mi Vida❤️
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="gallery">
+            <img src="foto1.jpg" alt="Nosotros">
+            <img src="foto2.jpg" alt="Un lindo recuerdo">
+            <img src="foto3.jpg" alt="Juntos para siempre">
+            <img src="foto4.jpg" alt="Juntos para siempre">
+            <img src="foto5.jpg" alt="Juntos para siempre">
+            <img src="foto6.jpg" alt="Juntos para siempre">
+        </div>
+        <button class="surprise-btn" onclick="showHearts()">¡Sorpresa! 🎁</button>
+    </div>
+
+    <script>
+        function toggleCard() {
+            document.getElementById('card').classList.toggle('flipped');
+        }
+        function showHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 1 + 3 + 's';
+                document.body.appendChild(heart);
+                
+            }
+        }
+        function playMusic() {
+            let audio = document.getElementById('cancion');
+            let visual = document.getElementById('music-visual');
+            audio.play();
+            visual.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
